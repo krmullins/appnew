@@ -194,7 +194,6 @@
 
 			$j('#products_dv_container-loading').addClass('hidden');
 			$j('#products_dv_container').removeClass('hidden');
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('products', 'ProductName');
 
 			$j('form').eq(0).change(function() {
 				if($j(this).data('already_changed')) return;

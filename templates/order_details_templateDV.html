@@ -133,27 +133,8 @@
 			}
 
 
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
-				AppGini.once({
-					condition: function() {
-						return $j('.form-group.order_details-OrderID')
-									.find('.nicEdit-main, .select2-container, input[type=radio]')
-									.length > 0
-								// or read-only DV
-								|| (!$j('#update').length && !$j('#insert').length);
-					},
-					action: function() {
-						$j('#order_details_dv_container-loading').addClass('hidden');
-						$j('#order_details_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('order_details', 'OrderID');
-					},
-					timeout:  5000,
-					doActionOnTimeout:  true
-				});
-			} else {
-				$j('#order_details_dv_container-loading').addClass('hidden');
-				$j('#order_details_dv_container').removeClass('hidden');
-			}
+			$j('#order_details_dv_container-loading').addClass('hidden');
+			$j('#order_details_dv_container').removeClass('hidden');
 
 			$j('form').eq(0).change(function() {
 				if($j(this).data('already_changed')) return;

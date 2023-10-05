@@ -99,7 +99,6 @@
 
 			$j('#shippers_dv_container-loading').addClass('hidden');
 			$j('#shippers_dv_container').removeClass('hidden');
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('shippers', 'CompanyName');
 
 			$j('form').eq(0).change(function() {
 				if($j(this).data('already_changed')) return;

@@ -127,7 +127,6 @@
 
 			$j('#categories_dv_container-loading').addClass('hidden');
 			$j('#categories_dv_container').removeClass('hidden');
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('categories', 'Picture');
 
 			$j('form').eq(0).change(function() {
 				if($j(this).data('already_changed')) return;
