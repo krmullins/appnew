@@ -15,11 +15,19 @@
 		];
 	 */
 
+$res = sql("SELECT * FROM membership_userrecords WHERE tableName='orders' ORDER BY dateAdded DESC LIMIT 1", $eo);
+if($row = db_fetch_assoc($res)){
+	$last_order_id =$row['pkValue'];
+	$last_order_ts = $row['dateAdded'];
+	$last_order_date = date('j/n/Y', $last_order_ts);
+}
 
-$homeLinks[] = [
+
+	 $homeLinks[] = [
 	'url' => 'http://localhost/appnew/orders_view.php?SortField=&SortDirection=&FilterAnd%5B1%5D=and&FilterField%5B1%5D=8&FilterOperator%5B1%5D=is-empty&FilterValue%5B1%5D=', 
 	'title' => 'Unshipped Orders', 
-	'description' => 'Show all orders that are not yet shipped',
+	'description' => 'Show all orders that are not yet shipped.<br><br>' . 
+						'Most Recent order was placed on '. $last_order_date,
 	'groups' => ['*'], // groups allowed to see this link, use '*' if you want to show the link to all groups
 	'grid_column_classes' => 'col-md-4 col-lg-3', // optional CSS classes to apply to link block. See: https://getbootstrap.com/css/#grid
 	'panel_classes' => 'panel-danger', // optional CSS classes to apply to panel. See: https://getbootstrap.com/components/#panels
