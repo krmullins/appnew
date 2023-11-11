@@ -123,7 +123,7 @@
 	function createNonExistentDirs() {
 		foreach(APPGINI_DIRS as $dir) {
 			if(!strlen($dir) || is_dir(__DIR__ . "/$dir")) continue;
-			@mkdir(__DIR__ . "/$dir");
+			@mkdir(__DIR__ . "/$dir", 0777, true); // create dirs recursively
 		}
 	}
 
