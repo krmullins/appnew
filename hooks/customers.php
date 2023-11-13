@@ -100,7 +100,55 @@
 	}
 
 	function customers_dv($selectedID, $memberInfo, &$html, &$args) {
+		/* if this is the print preview, don't modify the detail view */
+		if(isset($_REQUEST['dvprint_x'])) return;
+		
+		ob_start(); ?>
 
+		<div id="form-tabs">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#customer-info" data-toggle="tab">Customer info</a></li>
+				<li><a href="#address-info" data-toggle="tab">Address info</a></li>
+			</ul>
+
+			<ul class="tab-content">
+				<div class="tab-pane active form-horizontal" id="customer-info"></div>
+				<div class="tab-pane form-horizontal" id="address-info"></div>
+			</ul>
+
+		</div>
+
+		<style>
+			#form-tabs .nav-tabs a{ display:block !important ;}
+		</style>
+
+		<script>
+			$j(function(){
+				$j('#form-tabs').appendTo('#customers_dv_form');
+
+				/* fields to move to the customer info tab */
+				$j('#CustomerID').parents('.form-group').appendTo('#customer-info')
+				$j('#CompanyName').parents('.form-group').appendTo('#customer-info')
+				$j('#ContactName').parents('.form-group').appendTo('#customer-info')
+				$j('#ContactTitle').parents('.form-group').appendTo('#customer-info')
+				$j('#Phone').parents('.form-group').appendTo('#customer-info')
+				$j('#Fax').parents('.form-group').appendTo('#customer-info')
+
+				/* fields to move to the address info tab */
+				$j('#Address').parents('.form-group').appendTo('#address-info')
+				$j('#City').parents('.form-group').appendTo('#address-info')
+				$j('#Region').parents('.form-group').appendTo('#address-info')
+				$j('#PostalCode').parents('.form-group').appendTo('#address-info')
+				$j('#Country').parents('.form-group').appendTo('#address-info')
+			})
+		</script>
+
+		<?php 
+		$tabs = ob_get_contents();
+		ob_end_clean();
+
+		$html .= $tabs;
+		
 	}
 
 	function customers_csv($query, $memberInfo, &$args) {
