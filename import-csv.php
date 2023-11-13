@@ -60,6 +60,10 @@
 
 			return $data;
 		},
+		'logs' => function($data, $options = []) {
+
+			return $data;
+		},
 	];
 
 	// accept a record as an assoc array, return a boolean indicating whether to import or skip record
@@ -72,6 +76,7 @@
 		'categories' => function($data, $options = []) { return true; },
 		'suppliers' => function($data, $options = []) { return true; },
 		'shippers' => function($data, $options = []) { return true; },
+		'logs' => function($data, $options = []) { return true; },
 	];
 
 	/*

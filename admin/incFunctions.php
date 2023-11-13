@@ -160,6 +160,13 @@
 					'group' => $tg[1],
 					'homepageShowCount' => 1
 				],
+				'logs' => [
+					'Caption' => 'Logs',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[0],
+					'homepageShowCount' => 0
+				],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) return $all_tables;
@@ -184,6 +191,7 @@
 			'categories' => ['Product Categories', 'Product categories include photos that have been automatically resized using the <br>thumbnails feature provided by AppGini.<br> Click on a thumbnail to enlarge it. Signed users can upload photos when defining new categories.', 'resources/table_icons/award_star_bronze_1.png', 'Operations'],
 			'suppliers' => ['Suppliers', 'In addition to to accessing suppliers\' details, you can also view products <br>provided by each supplier.', 'resources/table_icons/car.png', 'Operations'],
 			'shippers' => ['Shippers', 'Here you can access shippers info, and also see orders handled by each shipper.', 'resources/table_icons/cart.png', 'Operations'],
+			'logs' => ['Logs', '', 'table.gif', 'Sales'],
 		];
 		if($skip_authentication || getLoggedAdmin()) return $arrTables;
 
@@ -1631,6 +1639,36 @@
 						],
 					],
 				],
+				'logs' => [
+					'ID' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'ip' => [
+						'appgini' => "VARCHAR(16) NULL",
+						'info' => [
+							'caption' => 'IP address',
+							'description' => '',
+						],
+					],
+					'ts' => [
+						'appgini' => "BIGINT NULL",
+						'info' => [
+							'caption' => 'Ts',
+							'description' => '',
+						],
+					],
+					'details' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Details',
+							'description' => '',
+						],
+					],
+				],
 			];
 		}
 
@@ -2754,6 +2792,7 @@
 			'categories' => [],
 			'suppliers' => [],
 			'shippers' => [],
+			'logs' => [],
 		];
 	}
 	#########################################################
@@ -2913,6 +2952,8 @@
 			'suppliers' => [
 			],
 			'shippers' => [
+			],
+			'logs' => [
 			],
 		];
 

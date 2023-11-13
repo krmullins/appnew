@@ -480,6 +480,12 @@ function shippers_validateData() {
 
 	return !errors;
 }
+function logs_validateData() {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
 
 function post(url, params, update, disable, loading, success_callback) {
 	$j.ajax({

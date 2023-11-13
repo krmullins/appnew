@@ -114,6 +114,7 @@
 			'categories' => "`categories`.`CategoryID` as 'CategoryID', `categories`.`Picture` as 'Picture', `categories`.`CategoryName` as 'CategoryName', `categories`.`Description` as 'Description'",
 			'suppliers' => "`suppliers`.`SupplierID` as 'SupplierID', `suppliers`.`CompanyName` as 'CompanyName', `suppliers`.`ContactName` as 'ContactName', `suppliers`.`ContactTitle` as 'ContactTitle', `suppliers`.`Address` as 'Address', `suppliers`.`City` as 'City', `suppliers`.`Region` as 'Region', `suppliers`.`PostalCode` as 'PostalCode', `suppliers`.`Country` as 'Country', `suppliers`.`Phone` as 'Phone', `suppliers`.`Fax` as 'Fax', `suppliers`.`HomePage` as 'HomePage'",
 			'shippers' => "`shippers`.`ShipperID` as 'ShipperID', `shippers`.`CompanyName` as 'CompanyName', `shippers`.`Phone` as 'Phone'",
+			'logs' => "`logs`.`ID` as 'ID', `logs`.`ip` as 'ip', `logs`.`ts` as 'ts', `logs`.`details` as 'details'",
 		];
 
 		if(isset($sql_fields[$table_name])) return $sql_fields[$table_name];
@@ -133,6 +134,7 @@
 			'categories' => "`categories` ",
 			'suppliers' => "`suppliers` ",
 			'shippers' => "`shippers` ",
+			'logs' => "`logs` ",
 		];
 
 		$pkey = [
@@ -144,6 +146,7 @@
 			'categories' => 'CategoryID',
 			'suppliers' => 'SupplierID',
 			'shippers' => 'ShipperID',
+			'logs' => 'ID',
 		];
 
 		if(!isset($sql_from[$table_name])) return false;
@@ -297,6 +300,12 @@
 				'ShipperID' => '',
 				'CompanyName' => '',
 				'Phone' => '',
+			],
+			'logs' => [
+				'ID' => '',
+				'ip' => '',
+				'ts' => '',
+				'details' => '',
 			],
 		];
 
@@ -1307,6 +1316,8 @@ EOT;
 			'suppliers' => [
 			],
 			'shippers' => [
+			],
+			'logs' => [
 			],
 		];
 
