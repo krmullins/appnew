@@ -27,7 +27,7 @@ if($row = db_fetch_assoc($res)){
 	'url' => 'http://localhost/appnew/orders_view.php?SortField=&SortDirection=&FilterAnd%5B1%5D=and&FilterField%5B1%5D=8&FilterOperator%5B1%5D=is-empty&FilterValue%5B1%5D=', 
 	'title' => 'Unshipped Orders', 
 	'description' => 'Show all orders that are not yet shipped.<br><br>' . 
-						'Most Recent order was placed on '. $last_order_date,
+						'<a href="orders_view.php?SelectedID=' . urldecode($last_order_id) . '">Most Recent order </a> was placed on '. $last_order_date,
 	'groups' => ['*'], // groups allowed to see this link, use '*' if you want to show the link to all groups
 	'grid_column_classes' => 'col-md-4 col-lg-3', // optional CSS classes to apply to link block. See: https://getbootstrap.com/css/#grid
 	'panel_classes' => 'panel-danger', // optional CSS classes to apply to panel. See: https://getbootstrap.com/components/#panels
