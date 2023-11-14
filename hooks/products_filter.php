@@ -16,7 +16,7 @@
 
 <div style="margin-top: 20px;">
 	<label>Category</label>
-	<div style="max-width: 550px;"><span id="CategoryDropDown"></span></div>
+	<div style="max-width: 350px;"><span id="CategoryDropDown"></span></div>
 	
 	<input type="hidden" name="FilterAnd[3]" value="and">
 	
@@ -36,7 +36,7 @@
 				data: function(term, page){ return { s: term, p: page, t: 'products', f: 'CategoryID' }; },
 				results: function(resp, page){ return resp; }
 			},
-			width: 550
+			width: 350
 		}).on('change', function(e){
 			$j('#CategoryID').val(e.added.text);
 		});
