@@ -168,31 +168,7 @@
 				`ip` VARCHAR(16) NULL,
 				`ts` BIGINT NULL,
 				`details` TEXT NULL
-			) CHARSET utf8mb4", [
-				"ALTER TABLE `table9` RENAME `logs`",
-				"UPDATE `membership_userrecords` SET `tableName`='logs' WHERE `tableName`='table9'",
-				"UPDATE `membership_userpermissions` SET `tableName`='logs' WHERE `tableName`='table9'",
-				"UPDATE `membership_grouppermissions` SET `tableName`='logs' WHERE `tableName`='table9'",
-				"ALTER TABLE logs ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `logs` CHANGE `field1` `field1` VARCHAR(40) NOT NULL ",
-				"ALTER TABLE `logs` ADD UNIQUE `field1_unique` (`field1`)",
-				" ALTER TABLE `logs` CHANGE `field1` `field1` VARCHAR(40) NOT NULL ",
-				"ALTER TABLE `logs` DROP INDEX `field1_unique`",
-				"ALTER TABLE `logs` CHANGE `field1` `ID` VARCHAR(40) NOT NULL ",
-				" ALTER TABLE `logs` CHANGE `ID` `ID` INT NOT NULL ",
-				" ALTER TABLE `logs` CHANGE `ID` `ID` INT NOT NULL AUTO_INCREMENT ",
-				" ALTER TABLE `logs` CHANGE `ID` `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT ",
-				"ALTER TABLE logs ADD `field2` VARCHAR(40)",
-				"ALTER TABLE `logs` CHANGE `field2` `ip` VARCHAR(40) NULL ",
-				" ALTER TABLE `logs` CHANGE `ip` `ip` VARCHAR(16) NULL ",
-				"ALTER TABLE logs ADD `field3` VARCHAR(40)",
-				"ALTER TABLE `logs` CHANGE `field3` `ts` VARCHAR(40) NULL ",
-				" ALTER TABLE `logs` CHANGE `ts` `ts` BIGINT NULL ",
-				"ALTER TABLE logs ADD `field4` VARCHAR(40)",
-				"ALTER TABLE `logs` CHANGE `field4` `details` VARCHAR(40) NULL ",
-				"ALTER TABLE `logs` CHANGE `comments` `comments` TEXT NULL ",
-				"ALTER TABLE `logs` ADD PRIMARY KEY (`ID`)",
-			]
+			) CHARSET utf8mb4"
 		);
 
 

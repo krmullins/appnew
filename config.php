@@ -2,14 +2,14 @@
 	$dbServer = 'localhost';
 	$dbUsername = 'root';
 	$dbPassword = '';
-	$dbDatabase = 'appnew';
+	$dbDatabase = 'demo_app';
 	$dbPort = '3306';
 	$appURI = 'appnew';
 	$host = 'localhost';
 
 	$adminConfig = [
 		'adminUsername' => "kevin",
-		'adminPassword' => "\$2y\$10\$Ri3lMNSQgJ.EXFiqnmayV.TrOhd0MpxnDAh.4B1I03Tb.3PBgvEOi",
+		'adminPassword' => "\$2y\$10\$cT/32uvRoEIpkdls3HwtdOIvX1AQX8ix5sSvh2mTRfq7E8Hz0DVre",
 		'senderEmail' => "krmullins@gmail.com",
 		'notifyAdminNewMembers' => "",
 		'defaultSignUp' => "1",

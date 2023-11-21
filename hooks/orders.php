@@ -76,7 +76,31 @@
 	}
 
 	function orders_after_insert($data, $memberInfo, &$args){
-
+		/* send an email notification when a new order is placed */
+		ob_start(); ?>
+<h3>A new order has been placed, with the following data:</h3>
+<hr>
+<table>
+	<tr><td><b>Order ID</b></td><td><?php echo $data['OrderID']; ?></td></tr>
+	<tr><td><b>Order date</b></td><td><?php echo date('m/d/Y', strtotime($data['OrderDate'])); ?></td></tr>
+	<tr><td><b>Required date</b></td><td><?php echo date('m/d/Y', strtotime($data['RequiredDate'])); ?></td></tr>
+	<tr><td><b>Customer</b></td><td><?php echo sqlValue("select CompanyName from customers where CustomerID='" . makeSafe($data['CustomerID']) . "'"); ?></td></tr>
+	<tr><td><b>Employee</b></td><td><?php echo sqlValue("select concat_ws(' ', FirstName, LastName) from employees where EmployeeID='" . makeSafe($data['EmployeeID']) . "'"); ?></td></tr>
+</table>		
+		<?php
+		$mail_body = ob_get_contents();
+		ob_end_clean();
+		
+		//$customer_email = sqlValue("select email from customers where CustomerID='" . makeSafe($data['CustomerID']) . "'");
+		
+		mail(
+			'krmullins@gmail.com',
+			'New order placed ' . $data['OrderID'],
+			$mail_body,
+			"From: kev@mullinsmail.com\r\n" .
+			"MIME-Version: 1.0\r\n" .
+			"Content-type: text/html; charset=iso-8859-1\r\n"
+		);
 		return TRUE;
 	}
 
