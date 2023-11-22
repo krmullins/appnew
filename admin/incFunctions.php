@@ -1136,6 +1136,20 @@
 							'description' => '',
 						],
 					],
+					'Age' => [
+						'appgini' => "INT NULL",
+						'info' => [
+							'caption' => 'Age',
+							'description' => '',
+						],
+					],
+					'AgeC' => [
+						'appgini' => "INT NULL",
+						'info' => [
+							'caption' => 'AgeC',
+							'description' => '',
+						],
+					],
 					'HireDate' => [
 						'appgini' => "DATE NULL",
 						'info' => [
@@ -1203,13 +1217,6 @@
 						'appgini' => "INT NULL",
 						'info' => [
 							'caption' => 'ReportsTo',
-							'description' => '',
-						],
-					],
-					'Age' => [
-						'appgini' => "INT NULL",
-						'info' => [
-							'caption' => 'Age',
 							'description' => '',
 						],
 					],
@@ -2761,7 +2768,7 @@
 					WHERE `customers`.`CustomerID`=\'%ID%\'',
 			],
 			'employees' => [
-				'Age' => 'SELECT TIMESTAMPDIFF(YEAR, `employees`.`BirthDate`, CURDATE()) FROM `employees` 
+				'AgeC' => 'SELECT TIMESTAMPDIFF(YEAR, `employees`.`BirthDate`, CURDATE()) FROM `employees` 
 					WHERE `employees`.`EmployeeID`=\'%ID%\'',
 				'TotalSales' => 'SELECT SUM(`orders`.`Total`) FROM `employees`
 					LEFT JOIN `orders` ON `orders`.`EmployeeID`=`employees`.`EmployeeID`

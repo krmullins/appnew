@@ -72,7 +72,7 @@
 	$x->AllowPrintingDV = 1;
 	$x->AllowCSV = 1;
 	$x->RecordsPerPage = 10;
-	$x->QuickSearch = 1;
+	$x->QuickSearch = 0;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'shippers_view.php';
 	$x->TableTitle = 'Shippers';

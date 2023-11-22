@@ -154,6 +154,24 @@
 			}
 		</script>
 
+				
+		<script>
+					$j(function(){
+						$j('fieldset.form-horizontal').removeClass('form-horizontal').addClass('form-inline');
+					})
+		</script>
+
+		<style>
+				@media (min-width: 768px) {
+						
+					.form-inline .form-group{
+						width: 48%;
+						margin-bottom: 0.75em;
+						vertical-align: top;
+					}
+				}
+		</style>
+
 		<?php 
 		$form_code = ob_get_contents();
 		ob_end_clean();

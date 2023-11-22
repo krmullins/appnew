@@ -25,4 +25,22 @@
     ?>
 
 
+<?php if(!$_REQUEST['Embedded']){ ?>
+    <div class=navbar-fixed-bottom hidden-print alert alert-info">
+        <?php echo date('D, j M Y h:m:s a T'); ?>
+    </div>
+<?php } ?>
 
+<script>
+    function get_date(date_field){
+        var y = $j('#' + date_field).val();
+        var m = $j('#' + date_field + '-mm').val();
+        var d = $j('#' + date_field + '-dd').val();
+        
+        var date_object = new Date(y, m - 1, d);
+        
+        if(!y) return false;
+        
+        return date_object;
+    }
+</script>

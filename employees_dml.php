@@ -33,6 +33,7 @@ function employees_insert(&$error_message = '') {
 		'FirstName' => Request::val('FirstName', ''),
 		'Title' => Request::val('Title', ''),
 		'BirthDate' => Request::dateComponents('BirthDate', ''),
+		'Age' => Request::val('Age', ''),
 		'HireDate' => Request::dateComponents('HireDate', '1'),
 		'Address' => br2nl(Request::val('Address', '')),
 		'City' => Request::val('City', ''),
@@ -223,6 +224,7 @@ function employees_update(&$selected_id, &$error_message = '') {
 		'FirstName' => Request::val('FirstName', ''),
 		'Title' => Request::val('Title', ''),
 		'BirthDate' => Request::dateComponents('BirthDate', ''),
+		'Age' => Request::val('Age', ''),
 		'HireDate' => Request::dateComponents('HireDate', ''),
 		'Address' => br2nl(Request::val('Address', '')),
 		'City' => Request::val('City', ''),
@@ -378,7 +380,7 @@ function employees_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_Country->SelectedText = (isset($filterField[1]) && $filterField[1] == '13' && $filterOperator[1] == '<=>' ? $filterValue[1] : '');
+		$combo_Country->SelectedText = (isset($filterField[1]) && $filterField[1] == '15' && $filterOperator[1] == '<=>' ? $filterValue[1] : '');
 		$combo_ReportsTo->SelectedData = $filterer_ReportsTo;
 	}
 	$combo_Country->Render();
@@ -519,6 +521,7 @@ function employees_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 		$jsReadOnly .= "\tjQuery('#Title').replaceWith('<div class=\"form-control-static\" id=\"Title\">' + (jQuery('#Title').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('#BirthDate').prop('readonly', true);\n";
 		$jsReadOnly .= "\tjQuery('#BirthDateDay, #BirthDateMonth, #BirthDateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\tjQuery('#Age').replaceWith('<div class=\"form-control-static\" id=\"Age\">' + (jQuery('#Age').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('#HireDate').prop('readonly', true);\n";
 		$jsReadOnly .= "\tjQuery('#HireDateDay, #HireDateMonth, #HireDateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\tjQuery('#Address').replaceWith('<div class=\"form-control-static\" id=\"Address\">' + (jQuery('#Address').val() || '') + '</div>');\n";
@@ -588,6 +591,8 @@ function employees_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 	$templateCode = str_replace('<%%UPLOADFILE(FirstName)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(Title)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(BirthDate)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(Age)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(AgeC)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(HireDate)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(Address)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(City)%%>', '', $templateCode);
@@ -598,7 +603,6 @@ function employees_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 	$templateCode = str_replace('<%%UPLOADFILE(Extension)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(Notes)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(ReportsTo)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(Age)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(TotalSales)%%>', '', $templateCode);
 
 	// process values
@@ -624,6 +628,11 @@ function employees_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 		$templateCode = str_replace('<%%URLVALUE(Title)%%>', urlencode($urow['Title']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(BirthDate)%%>', app_datetime($row['BirthDate']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(BirthDate)%%>', urlencode(app_datetime($urow['BirthDate'])), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(Age)%%>', safe_html($urow['Age']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(Age)%%>', html_attr($row['Age']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(Age)%%>', urlencode($urow['Age']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(AgeC)%%>', safe_html($urow['AgeC']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(AgeC)%%>', urlencode($urow['AgeC']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(HireDate)%%>', app_datetime($row['HireDate']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(HireDate)%%>', urlencode(app_datetime($urow['HireDate'])), $templateCode);
 		if($dvprint || (!$AllowUpdate && !$AllowInsert)) {
@@ -660,8 +669,6 @@ function employees_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(ReportsTo)%%>', safe_html($urow['ReportsTo']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(ReportsTo)%%>', html_attr($row['ReportsTo']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(ReportsTo)%%>', urlencode($urow['ReportsTo']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(Age)%%>', safe_html($urow['Age']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(Age)%%>', urlencode($urow['Age']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(TotalSales)%%>', safe_html($urow['TotalSales']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(TotalSales)%%>', urlencode($urow['TotalSales']), $templateCode);
 	} else {
@@ -678,6 +685,10 @@ function employees_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 		$templateCode = str_replace('<%%URLVALUE(Title)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(BirthDate)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(BirthDate)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(Age)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(Age)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(AgeC)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(AgeC)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(HireDate)%%>', '1', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(HireDate)%%>', urlencode('1'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(Address)%%>', '', $templateCode);
@@ -697,8 +708,6 @@ function employees_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 		$templateCode = str_replace('<%%HTMLAREA(Notes)%%>', '<textarea name="Notes" id="Notes" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(ReportsTo)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(ReportsTo)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(Age)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(Age)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(TotalSales)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(TotalSales)%%>', urlencode(''), $templateCode);
 	}

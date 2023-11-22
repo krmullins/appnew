@@ -11,17 +11,6 @@ function show_error(field, msg){
 	return false;
 }
 
-function get_date(date_field){
-	var y = $j('#' + date_field).val();
-	var m = $j('#' + date_field + '-mm').val();
-	var d = $j('#' + date_field + '-dd').val();
-	
-	var date_object = new Date(y, m - 1, d);
-	
-	if(!y) return false;
-	
-	return date_object;
-}
 
 $j(function(){
 	$j('#update, #insert').click(function(){

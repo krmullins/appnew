@@ -24,7 +24,7 @@ if($row = db_fetch_assoc($res)){
 
 
 	 $homeLinks[] = [
-	'url' => 'http://localhost/appnew/orders_view.php?SortField=&SortDirection=&FilterAnd%5B1%5D=and&FilterField%5B1%5D=8&FilterOperator%5B1%5D=is-empty&FilterValue%5B1%5D=', 
+	'url' => 'http://localhost/demoapp/orders_view.php?SortField=&SortDirection=&FilterAnd%5B1%5D=and&FilterField%5B1%5D=8&FilterOperator%5B1%5D=is-empty&FilterValue%5B1%5D=', 
 	'title' => 'Unshipped Orders', 
 	'description' => 'Show all orders that are not yet shipped.<br><br>' . 
 						'<a href="orders_view.php?SelectedID=' . urldecode($last_order_id) . '">Most Recent order </a> was placed on '. $last_order_date,

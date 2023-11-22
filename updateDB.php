@@ -39,6 +39,8 @@
 				`FirstName` VARCHAR(10) NULL,
 				`Title` VARCHAR(30) NULL,
 				`BirthDate` DATE NULL,
+				`Age` INT NULL,
+				`AgeC` INT NULL,
 				`HireDate` DATE NULL,
 				`Address` VARCHAR(50) NULL,
 				`City` VARCHAR(15) NULL,
@@ -49,9 +51,10 @@
 				`Extension` VARCHAR(4) NULL,
 				`Notes` TEXT NULL,
 				`ReportsTo` INT NULL,
-				`Age` INT NULL,
 				`TotalSales` DECIMAL(10,2) NULL
-			) CHARSET utf8mb4"
+			) CHARSET utf8mb4", [
+				" ALTER TABLE `employees` CHANGE `Age` `Age` INT NULL ",
+			]
 		);
 		setupIndexes('employees', ['ReportsTo',]);
 

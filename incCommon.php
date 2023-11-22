@@ -107,7 +107,7 @@
 	function get_sql_fields($table_name) {
 		$sql_fields = [
 			'customers' => "`customers`.`CompanyName` as 'CompanyName', `customers`.`CustomerID` as 'CustomerID', `customers`.`ContactName` as 'ContactName', `customers`.`ContactTitle` as 'ContactTitle', `customers`.`Address` as 'Address', `customers`.`City` as 'City', `customers`.`Region` as 'Region', `customers`.`PostalCode` as 'PostalCode', `customers`.`Country` as 'Country', `customers`.`Phone` as 'Phone', `customers`.`Fax` as 'Fax', `customers`.`TotalSales` as 'TotalSales'",
-			'employees' => "`employees`.`EmployeeID` as 'EmployeeID', `employees`.`TitleOfCourtesy` as 'TitleOfCourtesy', `employees`.`Photo` as 'Photo', `employees`.`LastName` as 'LastName', `employees`.`FirstName` as 'FirstName', `employees`.`Title` as 'Title', if(`employees`.`BirthDate`,date_format(`employees`.`BirthDate`,'%m/%d/%Y'),'') as 'BirthDate', if(`employees`.`HireDate`,date_format(`employees`.`HireDate`,'%m/%d/%Y'),'') as 'HireDate', `employees`.`Address` as 'Address', `employees`.`City` as 'City', `employees`.`Region` as 'Region', `employees`.`PostalCode` as 'PostalCode', `employees`.`Country` as 'Country', `employees`.`HomePhone` as 'HomePhone', `employees`.`Extension` as 'Extension', `employees`.`Notes` as 'Notes', IF(    CHAR_LENGTH(`employees1`.`LastName`) || CHAR_LENGTH(`employees1`.`FirstName`), CONCAT_WS('',   `employees1`.`LastName`, ', ', `employees1`.`FirstName`), '') as 'ReportsTo', `employees`.`Age` as 'Age', `employees`.`TotalSales` as 'TotalSales'",
+			'employees' => "`employees`.`EmployeeID` as 'EmployeeID', `employees`.`TitleOfCourtesy` as 'TitleOfCourtesy', `employees`.`Photo` as 'Photo', `employees`.`LastName` as 'LastName', `employees`.`FirstName` as 'FirstName', `employees`.`Title` as 'Title', if(`employees`.`BirthDate`,date_format(`employees`.`BirthDate`,'%m/%d/%Y'),'') as 'BirthDate', `employees`.`Age` as 'Age', `employees`.`AgeC` as 'AgeC', if(`employees`.`HireDate`,date_format(`employees`.`HireDate`,'%m/%d/%Y'),'') as 'HireDate', `employees`.`Address` as 'Address', `employees`.`City` as 'City', `employees`.`Region` as 'Region', `employees`.`PostalCode` as 'PostalCode', `employees`.`Country` as 'Country', `employees`.`HomePhone` as 'HomePhone', `employees`.`Extension` as 'Extension', `employees`.`Notes` as 'Notes', IF(    CHAR_LENGTH(`employees1`.`LastName`) || CHAR_LENGTH(`employees1`.`FirstName`), CONCAT_WS('',   `employees1`.`LastName`, ', ', `employees1`.`FirstName`), '') as 'ReportsTo', `employees`.`TotalSales` as 'TotalSales'",
 			'orders' => "`orders`.`OrderID` as 'OrderID', `orders`.`Status` as 'Status', IF(    CHAR_LENGTH(`customers1`.`CompanyName`), CONCAT_WS('',   `customers1`.`CompanyName`), '') as 'CustomerID', IF(    CHAR_LENGTH(`employees1`.`LastName`) || CHAR_LENGTH(`employees1`.`FirstName`), CONCAT_WS('',   `employees1`.`LastName`, ', ', `employees1`.`FirstName`), '') as 'EmployeeID', if(`orders`.`OrderDate`,date_format(`orders`.`OrderDate`,'%m/%d/%Y'),'') as 'OrderDate', TIME_FORMAT(`orders`.`OrderTime`, '%r') as 'OrderTime', if(`orders`.`RequiredDate`,date_format(`orders`.`RequiredDate`,'%m/%d/%Y'),'') as 'RequiredDate', if(`orders`.`ShippedDate`,date_format(`orders`.`ShippedDate`,'%m/%d/%Y'),'') as 'ShippedDate', IF(    CHAR_LENGTH(`shippers1`.`CompanyName`), CONCAT_WS('',   `shippers1`.`CompanyName`), '') as 'ShipVia', `orders`.`Freight` as 'Freight', IF(    CHAR_LENGTH(`customers1`.`CompanyName`), CONCAT_WS('',   `customers1`.`CompanyName`), '') as 'ShipName', IF(    CHAR_LENGTH(`customers1`.`Address`), CONCAT_WS('',   `customers1`.`Address`), '') as 'ShipAddress', IF(    CHAR_LENGTH(`customers1`.`City`), CONCAT_WS('',   `customers1`.`City`), '') as 'ShipCity', IF(    CHAR_LENGTH(`customers1`.`Region`), CONCAT_WS('',   `customers1`.`Region`), '') as 'ShipRegion', IF(    CHAR_LENGTH(`customers1`.`PostalCode`), CONCAT_WS('',   `customers1`.`PostalCode`), '') as 'ShipPostalCode', IF(    CHAR_LENGTH(`customers1`.`Country`), CONCAT_WS('',   `customers1`.`Country`), '') as 'ShipCountry', `orders`.`added_by` as 'added_by', if(`orders`.`added_date`,date_format(`orders`.`added_date`,'%m/%d/%Y'),'') as 'added_date', `orders`.`Total` as 'Total'",
 			'order_details' => "`order_details`.`odID` as 'odID', IF(    CHAR_LENGTH(`orders1`.`OrderID`), CONCAT_WS('',   `orders1`.`OrderID`), '') as 'OrderID', IF(    CHAR_LENGTH(`categories1`.`CategoryName`) || CHAR_LENGTH(`suppliers1`.`CompanyName`), CONCAT_WS('',   `categories1`.`CategoryName`, ' / ', `suppliers1`.`CompanyName`), '') as 'Category', IF(    CHAR_LENGTH(`products1`.`ProductName`), CONCAT_WS('',   `products1`.`ProductName`), '') as 'ProductID', CONCAT('$', FORMAT(`order_details`.`UnitPrice`, 2)) as 'UnitPrice', `order_details`.`Quantity` as 'Quantity', CONCAT('$', FORMAT(`order_details`.`Discount`, 2)) as 'Discount', `order_details`.`Subtotal` as 'Subtotal'",
 			'products' => "`products`.`ProductID` as 'ProductID', `products`.`ProductName` as 'ProductName', IF(    CHAR_LENGTH(`suppliers1`.`CompanyName`), CONCAT_WS('',   `suppliers1`.`CompanyName`), '') as 'SupplierID', IF(    CHAR_LENGTH(`categories1`.`CategoryName`), CONCAT_WS('',   `categories1`.`CategoryName`), '') as 'CategoryID', `products`.`QuantityPerUnit` as 'QuantityPerUnit', CONCAT('$', FORMAT(`products`.`UnitPrice`, 2)) as 'UnitPrice', `products`.`UnitsInStock` as 'UnitsInStock', `products`.`UnitsOnOrder` as 'UnitsOnOrder', `products`.`ReorderLevel` as 'ReorderLevel', `products`.`Discontinued` as 'Discontinued', `products`.`TotalSales` as 'TotalSales', `products`.`TechSheet` as 'TechSheet'",
@@ -218,6 +218,8 @@
 				'FirstName' => '',
 				'Title' => '',
 				'BirthDate' => '',
+				'Age' => '',
+				'AgeC' => '',
 				'HireDate' => '1',
 				'Address' => '',
 				'City' => '',
@@ -228,7 +230,6 @@
 				'Extension' => '',
 				'Notes' => '',
 				'ReportsTo' => '',
-				'Age' => '',
 				'TotalSales' => '',
 			],
 			'orders' => [
@@ -1124,9 +1125,9 @@ EOT;
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => [2 => 'Photo', 3 => 'Last Name', 4 => 'First Name', 5 => 'Title', 7 => 'Hire Date', 12 => 'Country', 16 => 'ReportsTo', 17 => 'Age', 18 => 'Total Sales'],
-					'display-field-names' => [2 => 'Photo', 3 => 'LastName', 4 => 'FirstName', 5 => 'Title', 7 => 'HireDate', 12 => 'Country', 16 => 'ReportsTo', 17 => 'Age', 18 => 'TotalSales'],
-					'sortable-fields' => [0 => '`employees`.`EmployeeID`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => '`employees`.`BirthDate`', 7 => '`employees`.`HireDate`', 8 => 9, 9 => 10, 10 => 11, 11 => 12, 12 => 13, 13 => 14, 14 => 15, 15 => 16, 16 => 17, 17 => '`employees`.`Age`', 18 => '`employees`.`TotalSales`'],
+					'display-fields' => [2 => 'Photo', 3 => 'Last Name', 4 => 'First Name', 5 => 'Title', 7 => 'Age', 9 => 'Hire Date', 14 => 'Country', 18 => 'ReportsTo', 19 => 'Total Sales'],
+					'display-field-names' => [2 => 'Photo', 3 => 'LastName', 4 => 'FirstName', 5 => 'Title', 7 => 'Age', 9 => 'HireDate', 14 => 'Country', 18 => 'ReportsTo', 19 => 'TotalSales'],
+					'sortable-fields' => [0 => '`employees`.`EmployeeID`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => '`employees`.`BirthDate`', 7 => '`employees`.`Age`', 8 => '`employees`.`AgeC`', 9 => '`employees`.`HireDate`', 10 => 11, 11 => 12, 12 => 13, 13 => 14, 14 => 15, 15 => 16, 16 => 17, 17 => 18, 18 => 19, 19 => '`employees`.`TotalSales`'],
 					'records-per-page' => 10,
 					'default-sort-by' => 3,
 					'default-sort-direction' => 'asc',
@@ -1135,7 +1136,7 @@ EOT;
 					'show-page-progress' => true,
 					'template' => 'children-employees',
 					'template-printable' => 'children-employees-printable',
-					'query' => "SELECT `employees`.`EmployeeID` as 'EmployeeID', `employees`.`TitleOfCourtesy` as 'TitleOfCourtesy', `employees`.`Photo` as 'Photo', `employees`.`LastName` as 'LastName', `employees`.`FirstName` as 'FirstName', `employees`.`Title` as 'Title', if(`employees`.`BirthDate`,date_format(`employees`.`BirthDate`,'%m/%d/%Y'),'') as 'BirthDate', if(`employees`.`HireDate`,date_format(`employees`.`HireDate`,'%m/%d/%Y'),'') as 'HireDate', `employees`.`Address` as 'Address', `employees`.`City` as 'City', `employees`.`Region` as 'Region', `employees`.`PostalCode` as 'PostalCode', `employees`.`Country` as 'Country', `employees`.`HomePhone` as 'HomePhone', `employees`.`Extension` as 'Extension', `employees`.`Notes` as 'Notes', IF(    CHAR_LENGTH(`employees1`.`LastName`) || CHAR_LENGTH(`employees1`.`FirstName`), CONCAT_WS('',   `employees1`.`LastName`, ', ', `employees1`.`FirstName`), '') as 'ReportsTo', `employees`.`Age` as 'Age', `employees`.`TotalSales` as 'TotalSales' FROM `employees` LEFT JOIN `employees` as employees1 ON `employees1`.`EmployeeID`=`employees`.`ReportsTo` "
+					'query' => "SELECT `employees`.`EmployeeID` as 'EmployeeID', `employees`.`TitleOfCourtesy` as 'TitleOfCourtesy', `employees`.`Photo` as 'Photo', `employees`.`LastName` as 'LastName', `employees`.`FirstName` as 'FirstName', `employees`.`Title` as 'Title', if(`employees`.`BirthDate`,date_format(`employees`.`BirthDate`,'%m/%d/%Y'),'') as 'BirthDate', `employees`.`Age` as 'Age', `employees`.`AgeC` as 'AgeC', if(`employees`.`HireDate`,date_format(`employees`.`HireDate`,'%m/%d/%Y'),'') as 'HireDate', `employees`.`Address` as 'Address', `employees`.`City` as 'City', `employees`.`Region` as 'Region', `employees`.`PostalCode` as 'PostalCode', `employees`.`Country` as 'Country', `employees`.`HomePhone` as 'HomePhone', `employees`.`Extension` as 'Extension', `employees`.`Notes` as 'Notes', IF(    CHAR_LENGTH(`employees1`.`LastName`) || CHAR_LENGTH(`employees1`.`FirstName`), CONCAT_WS('',   `employees1`.`LastName`, ', ', `employees1`.`FirstName`), '') as 'ReportsTo', `employees`.`TotalSales` as 'TotalSales' FROM `employees` LEFT JOIN `employees` as employees1 ON `employees1`.`EmployeeID`=`employees`.`ReportsTo` "
 				],
 			],
 			'orders' => [
@@ -1293,7 +1294,6 @@ EOT;
 					'child-primary-key-index' => 0,
 					'tab-label' => 'Products under this category <span class="hidden child-label-products child-field-caption">(Category)</span>',
 					'auto-close' => false,
-					'table-icon' => 'resources/table_icons/handbag.png',
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',

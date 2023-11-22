@@ -100,6 +100,30 @@
 	}
 
 	function products_dv($selectedID, $memberInfo, &$html, &$args) {
+        /* change the layout only if this is not the print preview */
+        if(isset($_REQUEST['dvprint_x'])) return;
+        ob_start(); ?>
+        
+        <script>
+            $j(function(){
+                $j('fieldset.form-horizontal').removeClass('form-horizontal').addClass('form-inline');
+            })
+        </script>
+        <style>
+        @media (min-width: 768px) {
+                
+            .form-inline .form-group{
+                width: 48%;
+                margin-bottom: 0.75em;
+                vertical-align: top;
+            }
+        }
+        </style>
+        <?php 
+        $new_layout = ob_get_contents();
+        ob_end_clean();
+        $html .=$new_layout;
+
 
 	}
 

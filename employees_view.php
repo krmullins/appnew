@@ -25,6 +25,8 @@
 		"`employees`.`FirstName`" => "FirstName",
 		"`employees`.`Title`" => "Title",
 		"if(`employees`.`BirthDate`,date_format(`employees`.`BirthDate`,'%m/%d/%Y'),'')" => "BirthDate",
+		"`employees`.`Age`" => "Age",
+		"`employees`.`AgeC`" => "AgeC",
 		"if(`employees`.`HireDate`,date_format(`employees`.`HireDate`,'%m/%d/%Y'),'')" => "HireDate",
 		"`employees`.`Address`" => "Address",
 		"`employees`.`City`" => "City",
@@ -35,7 +37,6 @@
 		"`employees`.`Extension`" => "Extension",
 		"`employees`.`Notes`" => "Notes",
 		"IF(    CHAR_LENGTH(`employees1`.`LastName`) || CHAR_LENGTH(`employees1`.`FirstName`), CONCAT_WS('',   `employees1`.`LastName`, ', ', `employees1`.`FirstName`), '') /* ReportsTo */" => "ReportsTo",
-		"`employees`.`Age`" => "Age",
 		"`employees`.`TotalSales`" => "TotalSales",
 	];
 	// mapping incoming sort by requests to actual query fields
@@ -47,9 +48,9 @@
 		5 => 5,
 		6 => 6,
 		7 => '`employees`.`BirthDate`',
-		8 => '`employees`.`HireDate`',
-		9 => 9,
-		10 => 10,
+		8 => '`employees`.`Age`',
+		9 => '`employees`.`AgeC`',
+		10 => '`employees`.`HireDate`',
 		11 => 11,
 		12 => 12,
 		13 => 13,
@@ -57,8 +58,9 @@
 		15 => 15,
 		16 => 16,
 		17 => 17,
-		18 => '`employees`.`Age`',
-		19 => '`employees`.`TotalSales`',
+		18 => 18,
+		19 => 19,
+		20 => '`employees`.`TotalSales`',
 	];
 
 	// Fields that can be displayed in the csv file
@@ -70,6 +72,8 @@
 		"`employees`.`FirstName`" => "FirstName",
 		"`employees`.`Title`" => "Title",
 		"if(`employees`.`BirthDate`,date_format(`employees`.`BirthDate`,'%m/%d/%Y'),'')" => "BirthDate",
+		"`employees`.`Age`" => "Age",
+		"`employees`.`AgeC`" => "AgeC",
 		"if(`employees`.`HireDate`,date_format(`employees`.`HireDate`,'%m/%d/%Y'),'')" => "HireDate",
 		"`employees`.`Address`" => "Address",
 		"`employees`.`City`" => "City",
@@ -80,7 +84,6 @@
 		"`employees`.`Extension`" => "Extension",
 		"`employees`.`Notes`" => "Notes",
 		"IF(    CHAR_LENGTH(`employees1`.`LastName`) || CHAR_LENGTH(`employees1`.`FirstName`), CONCAT_WS('',   `employees1`.`LastName`, ', ', `employees1`.`FirstName`), '') /* ReportsTo */" => "ReportsTo",
-		"`employees`.`Age`" => "Age",
 		"`employees`.`TotalSales`" => "TotalSales",
 	];
 	// Fields that can be filtered
@@ -91,6 +94,8 @@
 		"`employees`.`FirstName`" => "First Name",
 		"`employees`.`Title`" => "Title",
 		"`employees`.`BirthDate`" => "Birth Date",
+		"`employees`.`Age`" => "Age",
+		"`employees`.`AgeC`" => "AgeC",
 		"`employees`.`HireDate`" => "Hire Date",
 		"`employees`.`Address`" => "Address",
 		"`employees`.`City`" => "City",
@@ -100,7 +105,6 @@
 		"`employees`.`HomePhone`" => "Home Phone",
 		"`employees`.`Extension`" => "Extension",
 		"`employees`.`Notes`" => "Notes",
-		"`employees`.`Age`" => "Age",
 		"`employees`.`TotalSales`" => "Total Sales",
 	];
 
@@ -112,6 +116,8 @@
 		"`employees`.`FirstName`" => "FirstName",
 		"`employees`.`Title`" => "Title",
 		"if(`employees`.`BirthDate`,date_format(`employees`.`BirthDate`,'%m/%d/%Y'),'')" => "BirthDate",
+		"`employees`.`Age`" => "Age",
+		"`employees`.`AgeC`" => "AgeC",
 		"if(`employees`.`HireDate`,date_format(`employees`.`HireDate`,'%m/%d/%Y'),'')" => "HireDate",
 		"`employees`.`Address`" => "Address",
 		"`employees`.`City`" => "City",
@@ -121,7 +127,6 @@
 		"`employees`.`HomePhone`" => "HomePhone",
 		"`employees`.`Extension`" => "Extension",
 		"`employees`.`Notes`" => "Notes",
-		"`employees`.`Age`" => "Age",
 		"`employees`.`TotalSales`" => "TotalSales",
 	];
 
@@ -157,10 +162,10 @@
 	$x->DefaultSortField = '4';
 	$x->DefaultSortDirection = 'asc';
 
-	$x->ColWidth = [60, 100, 100, 200, 100, 120, 150, 150, 150, ];
-	$x->ColCaption = ['Photo', 'Last Name', 'First Name', 'Title', 'Hire Date', 'Country', 'ReportsTo', 'Age', 'Total Sales', ];
-	$x->ColFieldName = ['Photo', 'LastName', 'FirstName', 'Title', 'HireDate', 'Country', 'ReportsTo', 'Age', 'TotalSales', ];
-	$x->ColNumber  = [3, 4, 5, 6, 8, 13, 17, 18, 19, ];
+	$x->ColWidth = [60, 100, 100, 200, 150, 100, 120, 150, 150, 100, ];
+	$x->ColCaption = ['Photo', 'Last Name', 'First Name', 'Title', 'Age', 'Hire Date', 'Country', 'ReportsTo', 'Total Sales', 'Subordinates', ];
+	$x->ColFieldName = ['Photo', 'LastName', 'FirstName', 'Title', 'Age', 'HireDate', 'Country', 'ReportsTo', 'TotalSales', '%employees.ReportsTo%', ];
+	$x->ColNumber  = [3, 4, 5, 6, 8, 10, 15, 19, 20, -1, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/employees_templateTV.html';
