@@ -1,0 +1,33 @@
+/* =================================== */
+/*  Basic Style 
+/* =================================== */
+
+body {
+  background: #e7e9ed;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+form {
+  padding: 0;
+  margin: 0;
+  display: inline;
+}
+
+img {
+  vertical-align: inherit;
+}
+
+p {
+  line-height: 1.9;
+}
+
+iframe {
+  border: 0 !important;
+}
+
+.table, .table > :not(caption) > * > *{
+	--bs-table-color:#{$body-color};
+}
+	
+	

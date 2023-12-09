@@ -1,0 +1,16 @@
+@import "bootstrap/functions";
+@import "bootstrap/variables";
+@import "bootstrap/mixins/breakpoints";
+@import "bootstrap/vendor/rfs";
+
+//-------------------- Base Colors --------------------//
+
+$theme-color: 			#0071cc;
+
+$theme-hover-color :    darken($theme-color, 10%);
+
+$body-color:			#404040;
+
+//-------------------- Fonts --------------------//
+
+$body-font-family: 'Poppins', sans-serif;

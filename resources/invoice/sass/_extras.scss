@@ -1,0 +1,48 @@
+/* =================================== */
+/*  Extras
+/* =================================== */
+
+.btn-primary{
+    --#{$prefix}btn-color: var(--#{$prefix}white);
+	--#{$prefix}btn-bg: var(--#{$prefix}themecolor);
+	--#{$prefix}btn-border-color: var(--#{$prefix}themecolor);
+	
+    --#{$prefix}btn-hover-color: var(--bs-white);
+	--#{$prefix}btn-hover-bg: var(--#{$prefix}themehovercolor);
+	--#{$prefix}btn-hover-border-color: var(--#{$prefix}themehovercolor);
+	
+	--#{$prefix}btn-active-color: var(--bs-btn-hover-color);
+	--#{$prefix}btn-active-bg: var(--#{$prefix}themehovercolor);
+	--#{$prefix}btn-active-border-color: var(--#{$prefix}themehovercolor);
+}
+
+.btn-outline-primary{
+    --#{$prefix}btn-color: var(--#{$prefix}themecolor);
+	--#{$prefix}btn-border-color: var(--#{$prefix}themecolor);
+	--#{$prefix}btn-hover-bg: var(--#{$prefix}themecolor);
+	--#{$prefix}btn-hover-color: var(--bs-white);
+	--#{$prefix}btn-hover-border-color: var(--#{$prefix}themecolor);
+	--#{$prefix}btn-active-color: var(--bs-btn-hover-color);
+	--#{$prefix}btn-active-bg: var(--#{$prefix}themehovercolor);
+	--#{$prefix}btn-active-border-color: var(--#{$prefix}themehovercolor);
+}
+
+.progress, .progress-stacked{
+	--#{$prefix}progress-bar-bg: var(--#{$prefix}themecolor);
+}
+
+.pagination {
+	--#{$prefix}pagination-active-bg:var(--#{$prefix}themecolor);
+	--#{$prefix}pagination-active-border-color: var(--#{$prefix}themecolor);	
+}
+
+/* Pagination */
+
+.page-link {
+  border-color: #f4f4f4;
+  border-radius: 0.25rem;
+  margin: 0 0.3rem;
+}
+.page-item.disabled .page-link{
+	border-color: #f4f4f4;
+}
