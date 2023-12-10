@@ -6,7 +6,11 @@
     /* grant access to all users who have access to the orders table */
     $order_from = get_sql_from('orders');
     if(!$order_from) exit(error_message('Access denied!', false));
- 
+    
+    /* grant access to all users who have access to the customers table */
+    $customer_from = get_sql_from('customers');
+    if(!$customer_from) exit(error_message('Access denied!', false));
+
     /* get invoice */
     $order_id = intval($_REQUEST['OrderID']);
     if(!$order_id) exit(error_message('Invalid order ID!', false));
@@ -14,17 +18,17 @@
     /* retrieve order info */
 	$order_fields = get_sql_fields('orders');
 	$res = sql("select {$order_fields} from {$order_from} and OrderID={$order_id}", $eo);
-	if(!($order = db_fetch_assoc($res))) exit(error_message('Order not found!', false));
-
-    retrieve customer info 
-    $customer_id = 'ALFKI'
-    $cust_from = get_sql_from('customers');
+	
+    /* retrieve customer info */
+    $customer_id = 'ALFKI';
     $customer_fields = get_sql_fields('customers');
-    $custres = sql("select {$customer_fields} from {$cust_from} and CustomerID={$customer_id}", $eo);
+    $custres = sql("select {$customer_fields} from customers and CustomerID={$customer_id}", $eo);
+    $customer = db_fetch_assoc($custres);
 
-    //var_dump($order);
+    var_dump($customer_from);
+
  
-    /* retrieve order items */
+    /* retrieve order items
     $items = array();
     $order_total = 0;
     $item_fields = get_sql_fields('order_details');
@@ -118,5 +122,5 @@
     <?php 
 
 
-    include_once("$hooks_dir/footer.php");
-?>
+    include_once("$hooks_dir/footer.php");*/
+?> 

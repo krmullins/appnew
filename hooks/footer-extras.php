@@ -25,11 +25,8 @@
     ?>
 
 
-<?php if(!$_REQUEST['Embedded']){ ?>
-    <div class=navbar-fixed-bottom hidden-print alert alert-info">
-        <?php echo date('D, j M Y h:m:s a T'); ?>
-    </div>
-<?php } ?>
+
+
 
 <script>
     function get_date(date_field){
